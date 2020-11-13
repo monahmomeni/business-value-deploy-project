@@ -1,0 +1,18 @@
+include *.txt
+include *.md
+include *.cfg
+include *.pkl
+recursive-include ./lr_customer_value/*
+
+include lr_customer_value/datasets/act_train.csv
+include lr_customer_value/datasets/act_test.csv
+include lr_customer_value/datasets/people.csv
+
+include lr_customer_value/trained_models/*.pkl
+include lr_customer_value/VERSION
+
+include ./requirements.txt
+exclude *.log
+
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
