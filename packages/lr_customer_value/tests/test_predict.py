@@ -16,7 +16,7 @@ def test_make_multiple_prediction():
 
     # Given
     test_data = load_dataset(files_list=config.TESTING_DATA_FILES)
-    multiple_json_records = test_data[200:220].to_json(orient='records')
+    multiple_json_records = test_data[200:220]
 
     _logger.info(f"prediction on rows 200-220 of test data.")
 
@@ -33,7 +33,7 @@ def test_data_sanity_check():
     # Given
     test_data = load_dataset(files_list=config.TESTING_DATA_FILES)
     original_data_length = len(test_data)
-    multiple_test_json = test_data.to_json(orient='records')
+    multiple_test_json = test_data
 
     # When
     outcome = make_prediction(input_data=multiple_test_json)

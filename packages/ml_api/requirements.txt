@@ -1,0 +1,11 @@
+# api
+flask==1.0.2
+
+# model
+numpy>=1.18.1,<1.19.0
+
+# schema validation- was 2.17.0 changed for Date format
+marshmallow==3.0.0
+
+# path to local lr_customer_value package
+-e "/home/mona/projects/business-value-deploy-project/packages/lr_customer_value"
