@@ -9,7 +9,7 @@ from setuptools import find_packages, setup
 
 
 # Package meta-data.
-NAME = 'lr-customer-value'
+NAME = 'lr_customer_value'
 DESCRIPTION = 'Train and deploy customer classification model'
 URL = 'https://github.com/monahmomeni/business-value-deploy-project'
 EMAIL = 'mona1983@gmail.com'
