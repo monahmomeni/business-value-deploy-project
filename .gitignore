@@ -110,5 +110,5 @@ packages/lr_customer_value/lr_customer_value/datasets/*.txt
 logs/
 
 # trained models (will be created in CI)
-packages/lr_customer_value/lr_customer_value/trained_models/*.pkl
+# packages/lr_customer_value/lr_customer_value/trained_models/*.pkl
 
