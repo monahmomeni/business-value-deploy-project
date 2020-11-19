@@ -17,8 +17,50 @@ jobs:
             ./scripts/fetch_kaggle_dataset.sh
             py.test -vv packages/lr_customer_value/tests
 
+  test_ml_api:
+    working_directory: ~/project
+    docker:
+      - image: circleci/python:3.7.2
+    steps:
+      - checkout
+      - run:
+          name: Runnning tests
+          command: |
+            virtualenv venv
+            . venv/bin/activate
+            pip install --upgrade pip
+            pip install -r packages/ml_api/requirements.txt
+            py.test -vv packages/ml_api/tests
+
+  train_and_upload_customer_model:
+    working_directory: ~/project
+    docker:
+      - image: circleci/python:3.7.2
+    steps:
+      - checkout
+      - run:
+          name: Setup env
+          command: |
+            virtualenv venv
+            . venv/bin/activate
+            pip install -r packages/lr_customer_value/requirements.txt
+      - run:
+          name: Publish model
+          command: |
+            . venv/bin/activate
+            chmod +x ./scripts/fetch_kaggle_dataset.sh ./scripts/publish_model.sh
+            ./scripts/fetch_kaggle_dataset.sh
+            PYTHONPATH=./packages/lr_customer_value python3 packages/lr_customer_value/lr_customer_value/train_pipeline.py
+            ./scripts/publish_model.sh ./packages/lr_customer_value/
+
+
 workflows:
   version: 2
   test-all:
     jobs:
       - test_lr_customer_value
+      - test_ml_api
+      - train_and_upload_customer_model
+      - test_ml_api:
+          requires:
+            - train_and_upload_customer_model
