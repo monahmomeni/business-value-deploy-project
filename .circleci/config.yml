@@ -24,13 +24,11 @@ fetch_data: &fetch_data
 jobs:
   test_lr_customer_value:
     <<: *defaults
-
-
     steps:
       - checkout
       - *prepare_venv
       - run:
-          name: Installing requirements
+          name: Install requirements
           command: |
             . venv/bin/activate
             pip install -r packages/lr_customer_value/requirements.txt
@@ -38,7 +36,7 @@ jobs:
       - run:
           name: Train model
           command: |
-            . venv /bin/activate
+            . venv/bin/activate
             PYTHONPATH=./packages/lr_customer_value/ python3 packages/lr_customer_value/lr_customer_value/train_pipeline.py
       - run:
           name: Run tests
@@ -85,7 +83,7 @@ jobs:
       - run:
           name: Publish model to Gemfury
           command: |
-            . venv /bin/activate
+            . venv/bin/activate
             chmod +x ./scripts/publish_model.sh
             ./scripts/publish_model.sh ./packages/lr_customer_value/
 
