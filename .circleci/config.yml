@@ -1,66 +1,106 @@
 version: 2
+
+defaults: &defaults
+  docker:
+    - image: circleci/python:3.7.2
+  working_directory: ~/project
+
+prepare_venv: &prepare_venv
+  run:
+    name: Create venv
+    commands: |
+      python3 -m venv venv
+      source venv/bin/activate
+      pip install --upgrade pip
+
+fetch_data: &fetch_data
+  run:
+    name: Set script permissions and fetch data
+    commands: |
+      source venv/bin/activate
+      chmod +x ./scripts/fetch_kaggle_dataset.sh
+      ./scripts/fecth_kaggle_dataset.sh
+
 jobs:
   test_lr_customer_value:
-    working_directory: ~/project
-    docker:
-      - image: circleci/python:3.7.2
+    <<: *defaults
+
+
     steps:
       - checkout
+      - *prepare_venv
       - run:
-          name: Runnning tests
+          name: Installing requirements
           command: |
-            virtualenv venv
             . venv/bin/activate
-            pip install --upgrade pip
             pip install -r packages/lr_customer_value/requirements.txt
-            chmod +x ./scripts/fetch_kaggle_dataset.sh
-            ./scripts/fetch_kaggle_dataset.sh
+      - *fetch_data
+      - run:
+          name: Train model
+          command: |
+            . venv /bin/activate
+            PYTHONPATH=./packages/lr_customer_value/ python3 packages/lr_customer_value/lr_customer_value/train_pipeline.py
+      - run:
+          name: Run tests
+          command: |
+            . venv/bin/activate
             py.test -vv packages/lr_customer_value/tests
 
   test_ml_api:
-    working_directory: ~/project
-    docker:
-      - image: circleci/python:3.7.2
+    <<: *defaults
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - py-deps-{{ checksum "packages/ml_api/requirements.txt" }}
       - run:
           name: Runnning tests
           command: |
-            virtualenv venv
+            vitualenv venv
             . venv/bin/activate
             pip install --upgrade pip
             pip install -r packages/ml_api/requirements.txt
             py.test -vv packages/ml_api/tests
+      - save_cache:
+          key: py-deps-{{ checksum "packages/ml_api/requirements.txt" }}
+          paths:
+            - "/venv"
 
   train_and_upload_customer_model:
-    working_directory: ~/project
-    docker:
-      - image: circleci/python:3.7.2
+    <<: *defaults
     steps:
       - checkout
+      - *prepare_venv
       - run:
-          name: Setup env
+          name: Install requirements
           command: |
-            virtualenv venv
             . venv/bin/activate
             pip install -r packages/lr_customer_value/requirements.txt
+      - *fetch_data
       - run:
-          name: Publish model
+          name: Train model
           command: |
             . venv/bin/activate
-            chmod +x ./scripts/fetch_kaggle_dataset.sh ./scripts/publish_model.sh
-            ./scripts/fetch_kaggle_dataset.sh
             PYTHONPATH=./packages/lr_customer_value python3 packages/lr_customer_value/lr_customer_value/train_pipeline.py
+      - run:
+          name: Publish model to Gemfury
+          command: |
+            . venv /bin/activate
+            chmod +x ./scripts/publish_model.sh
             ./scripts/publish_model.sh ./packages/lr_customer_value/
-
 
 workflows:
   version: 2
-  test-all:
+  test_all:
     jobs:
       - test_lr_customer_value
       - test_ml_api
-      - train_and_upload_customer_model
-      - test_ml_api:
+      - train_and_upload_customer_model:
           requires:
-            - train_and_upload_customer_model
+            - test_lr_customer_value
+            - test_ml_api
+  #        filters:
+  #          branches:
+  #            only:
+  #              - main
+

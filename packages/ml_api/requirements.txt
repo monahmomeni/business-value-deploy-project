@@ -13,4 +13,4 @@ marshmallow==3.0.0
 # -e "/home/mona/projects/business-value-deploy-project/packages/lr_customer_value"
 
 # install from gemfury
-lr-customer-value==0.1.0
+lr_customer_value>=0.1.0
