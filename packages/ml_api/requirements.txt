@@ -1,4 +1,4 @@
---extra-index-url=$PIP_EXTRA_INDEX_URL
+--extra-index-url=${PIP_EXTRA_INDEX_URL}
 
 # api
 flask==1.0.2
@@ -13,4 +13,4 @@ marshmallow==3.0.0
 # -e "/home/mona/projects/business-value-deploy-project/packages/lr_customer_value"
 
 # install from gemfury
-lr_customer_value>=0.1.0
+lr_customer_value==0.1.0
