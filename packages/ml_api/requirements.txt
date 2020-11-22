@@ -14,5 +14,3 @@ marshmallow==3.0.0
 
 # install from gemfury
 lr_customer_value==0.1.0
-
-pip==19.1.1
