@@ -1,4 +1,4 @@
---extra-index-url=${PIP_EXTRA_INDEX_URL}
+--extra-index-url=https://nmxw1HibqpZ74Lwszs55@push.fury.io/monahmomeni/
 
 # api
 flask==1.0.2
