@@ -56,7 +56,7 @@ jobs:
       - run:
           name: Runnning tests
           command: |
-            vitualenv venv
+            virtualenv venv
             . venv/bin/activate
             pip install --upgrade pip
             pip install -r packages/ml_api/requirements.txt
