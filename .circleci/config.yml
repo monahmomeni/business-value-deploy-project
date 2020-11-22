@@ -8,7 +8,7 @@ defaults: &defaults
 prepare_venv: &prepare_venv
   run:
     name: Create venv
-    commands: |
+    command: |
       python3 -m venv venv
       source venv/bin/activate
       pip install --upgrade pip
@@ -16,10 +16,10 @@ prepare_venv: &prepare_venv
 fetch_data: &fetch_data
   run:
     name: Set script permissions and fetch data
-    commands: |
+    command: |
       source venv/bin/activate
       chmod +x ./scripts/fetch_kaggle_dataset.sh
-      ./scripts/fecth_kaggle_dataset.sh
+      ./scripts/fetch_kaggle_dataset.sh
 
 jobs:
   test_lr_customer_value:
