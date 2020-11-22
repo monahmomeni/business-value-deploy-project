@@ -92,10 +92,11 @@ workflows:
   test_all:
     jobs:
       - test_lr_customer_value
-      - train_and_upload_customer_model
-      - test_ml_api:
+      - test_ml_api
+      - train_and_upload_customer_model:
           requires:
-            - train_and_upload_customer_model
+            - test_lr_customer_value
+            - test_ml_api
   #        filters:
   #          branches:
   #            only:
