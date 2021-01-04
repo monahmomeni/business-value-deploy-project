@@ -1,6 +1,4 @@
---extra-index-url=${PIP_EXTRA_INDEX_URL}
---extra-index-url-lg=${PIP_EXTRA_INDEX_URL_LG}
-
+--extra-index-url=${PIP_EXTRA_INDEX_URL, PIP_EXTRA_INDEX_URL_LG}
 # api
 flask==1.0.2
 
