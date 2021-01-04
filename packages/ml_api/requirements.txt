@@ -14,3 +14,6 @@ marshmallow==3.0.0
 
 # install from gemfury
 lr-customer-value==0.1.0
+
+# Deployment
+gunicorn==19.9.0
