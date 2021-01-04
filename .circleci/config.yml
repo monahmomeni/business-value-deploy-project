@@ -97,8 +97,8 @@ workflows:
           requires:
             - test_lr_customer_value
             - test_ml_api
-  #        filters:
-  #          branches:
-  #            only:
-  #              - main
+          filters:
+            branches:
+              only:
+                - main
 
