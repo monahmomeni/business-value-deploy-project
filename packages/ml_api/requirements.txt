@@ -1,3 +1,5 @@
+--extra-index-url=${PIP_EXTRA_INDEX_URL}
+
 # api
 flask==1.0.2
 
@@ -8,4 +10,7 @@ numpy>=1.18.1,<1.19.0
 marshmallow==3.0.0
 
 # path to local lr_customer_value package
--e "/home/mona/projects/business-value-deploy-project/packages/lr_customer_value"
+# -e "/home/mona/projects/business-value-deploy-project/packages/lr_customer_value"
+
+# install from gemfury
+lr-customer-value==0.1.0
