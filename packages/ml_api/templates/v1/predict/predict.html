@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redhat customer value classification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style>
+      .container {
+        max-width: 1000px;
+      }
+    </style>
+    <link rel="shortcut icon" href="#" />
+<!--    <script>-->
+<!--      var char_27 = document.form_data.char_27.value-->
+<!--    </script>-->
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/static/js/app.js"></script>
+  </head>
+
+
+  <body>
+    <div class="container p-3 my-3 bg-dark text-white">
+      <div class="row">
+        <div class="col-lg-12 col-sm-offset-1">
+          <h1>Redhat customer value classification</h1>
+          <br>
+          <strong style="color:gray"> <h3>Provide activity and client data for a prediction below,<br><br></h3></strong>
+          <form role="form" method="POST" action="/v1/predict/customer_value">
+            <div class="col-xs-2 form-group">
+              <LABEL for="date_x">activity date</LABEL>
+              <input type="date" name="date_x" class="form-control" id="date_x" value="2023-01-01" max="2023-12-31" min="2022-01-01">
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="activity_category">activity category </LABEL>
+              <select class="form-control" id="activity_category" name="activity_category">
+                <option value="type 1">type 1</option>
+                <option value="type 2">type 2</option>
+                <option value="type 3">type 3</option>
+                <option value="type 4">type 4</option>
+                <option value="type 5">type 5</option>
+                <option value="type 6">type 6</option>
+                <option value="type 7">type 7</option>
+              </select>
+            </div>
+            <div class="col-xs-2 col-xs-offset-6 col-xs-pull-6 form-group">
+              <LABEL for="char_5_x">activity feature 5</LABEL>
+              <select class="form-control" id="char_5_x" name="char_5_x">
+                <option value=""></option>
+                <option value="type 1">type 1</option>
+                <option value="type 2">type 2</option>
+                <option value="type 3">type 3</option>
+                <option value="type 4">type 4</option>
+                <option value="type 5">type 5</option>
+                <option value="type 6">type 6</option>
+                <option value="type 7">type 7</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_1_y">client feature 1 </LABEL>
+              <select class="form-control" name="char_1_y" id="char_1_y">
+                <option value="type 1">type 1</option>
+                <option value="type 2">type 2</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_2_y">client feature 2 </LABEL>
+              <select class="form-control" name="char_2_y" id="char_2_y">
+                <option value="type 1">type 1</option>
+                <option value="type 2">type 2</option>
+                <option value="type 3">type 3</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_3_y">client feature 3 </LABEL>
+              <select class="0-100 form-control" id="char_3_y" name="char_3_y"></select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_4_y">client feature 4 </LABEL>
+              <select class="0-100 form-control" id="char_4_y" name="char_4_y"></select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_5_y">client feature 5 </LABEL>
+              <select class="form-control" name="char_5_y" id="char_5_y">
+                <option value="type 1">type 1</option>
+                <option value="type 2">type 2</option>
+                <option value="type 3">type 3</option>
+                <option value="type 4">type 4</option>
+                <option value="type 5">type 5</option>
+                <option value="type 6">type 6</option>
+                <option value="type 7">type 7</option>
+                <option value="type 8">type 8</option>
+                <option value="type 9">type 9</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_6_y">client feature 6 </LABEL>
+              <select class="form-control" name="char_6_y" id="char_6_y">
+                <option value="type 1">type 1</option>
+                <option value="type 2">type 2</option>
+                <option value="type 3">type 3</option>
+                <option value="type 4">type 4</option>
+                <option value="type 5">type 5</option>
+                <option value="type 6">type 6</option>
+                <option value="type 7">type 7</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_7_y">client feature 7 </LABEL>
+              <select class="0-100 form-control" id="char_7_y" name="char_7_y"></select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_8_y">client feature 8 </LABEL>
+              <select class="form-control" name="char_8_y" id="char_8_y">
+                <option value="type 1">type 1</option>
+                <option value="type 2">type 2</option>
+                <option value="type 3">type 3</option>
+                <option value="type 4">type 4</option>
+                <option value="type 5">type 5</option>
+                <option value="type 6">type 6</option>
+                <option value="type 7">type 7</option>
+                <option value="type 8">type 8</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_9_y">client feature 9 </LABEL>
+              <select class="form-control" name="char_9_y" id="char_9_y">
+                <option value="type 1">type 1</option>
+                <option value="type 2">type 2</option>
+                <option value="type 3">type 3</option>
+                <option value="type 4">type 4</option>
+                <option value="type 5">type 5</option>
+                <option value="type 6">type 6</option>
+                <option value="type 7">type 7</option>
+                <option value="type 8">type 8</option>
+                <option value="type 9">type 9</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_10_y">client feature 10 </LABEL>
+              <select class="form-control" name="char_10_y" id="char_10_y">
+                <option value="True">True</option>
+                <option value="False" selected>False</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_12">client feature 12 </LABEL>
+              <select class="form-control" name="char_12" id="char_12">
+                <option value="True">True</option>
+                <option value="False" selected>False</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_13">client feature 13 </LABEL>
+              <select class="form-control" name="char_13" id="char_13">
+                <option value="True">True</option>
+                <option value="False" selected>False</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_16">client feature 16 </LABEL>
+              <select class="form-control" name="char_16" id="char_16">
+                <option value="True">True</option>
+                <option value="False" selected>False</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_20">client feature 20 </LABEL>
+              <select class="form-control" name="char_20" id="char_20">
+                <option value="True">True</option>
+                <option value="False" selected>False</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_22">client feature 22 </LABEL>
+              <select class="form-control" name="char_22" id="char_22">
+                <option value="True">True</option>
+                <option value="False" selected>False</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_23">client feature 23 </LABEL>
+              <select class="form-control" name="char_23" id="char_23">
+                <option value="True">True</option>
+                <option value="False" selected>False</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_25">client feature 25 </LABEL>
+              <select class="form-control" name="char_25" id="char_25">
+                <option value="True">True</option>
+                <option value="False" selected>False</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_26">client feature 26 </LABEL>
+              <select class="form-control" name="char_26" id="char_26">
+                <option value="True">True</option>
+                <option value="False" selected>False</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_27">client feature 27 </LABEL>
+              <select class="form-control" name="char_27" id="char_27">
+                <option value="True">True</option>
+                <option value="False" selected>False</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_30">client feature 30 </LABEL>
+              <select class="form-control" name="char_30" id="char_30">
+                <option value="True">True</option>
+                <option value="False" selected>False</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_32">client feature 32 </LABEL>
+              <select class="form-control" name="char_32" id="char_32">
+                <option value="True">True</option>
+                <option value="False" selected>False</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_33">client feature 33 </LABEL>
+              <select class="form-control" name="char_33" id="char_33">
+                <option value="True">True</option>
+                <option value="False" selected>False</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_34">client feature 34 </LABEL>
+              <select class="form-control" name="char_34" id="char_34">
+                <option value="True">True</option>
+                <option value="False" selected>False</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_35">client feature 35 </LABEL>
+              <select class="form-control" name="char_35" id="char_35">
+                <option value="True">True</option>
+                <option value="False" selected>False</option>
+              </select>
+            </div>
+            <div class="col-xs-2 form-group">
+              <LABEL for="char_36">client feature 36 </LABEL>
+              <select class="form-control" name="char_36" id="char_36">
+                <option value="True">True</option>
+                <option value="False" selected>False</option>
+              </select>
+            </div>
+            <div class="col-xs-2 col-xs-offset-8 col-xs-pull-8 form-group">
+              <LABEL for="char_38">client feature 38</LABEL>
+<!--              <select class="0-100 form-control" name="char_38" id="char_38"></select>-->
+              <input type="number"  class="form-control" id="char_38" name="char_38" min="0" max="100" placeholder="100">
+            </div>
+
+            <div class="large-3 cell">
+              <button type="submit" id="btn_submit" class="button expanded btn-lg col-xs-offset-5">Submit</button>
+            </div>
+          </form>
+          <br><br>
+          <br>
+          {% if errors %}
+            {% for error in errors %}
+              <h4>{{ error }}</h4>
+            {% endfor %}
+          {% endif %}
+          <br>
+        </div>
+      </div>
+
+      <div class="col-sm-3 col-sm-offset-1">
+          <h2>Results</h2>
+          <br>
+          <div id="results">
+            <table class="table table-striped" style="max-width: 300px;">
+              <thead>
+                <tr>
+                  <th>Output</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              {% for k, val in results.items()%}
+                <tr>
+                  <td>{{ k }}</td>
+                  <td>{{ val }}</td>
+                </tr>
+              {% endfor %}
+            </table>
+          </div>
+      </div>
+    </div>
+    <br><br>
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/static/js/app.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

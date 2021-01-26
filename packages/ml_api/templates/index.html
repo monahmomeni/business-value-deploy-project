@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redhat customer value classification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style>
+      .container {
+        max-width: 1000px;
+      }
+
+      .block {
+        display: block;
+        width: 100%;
+        border: none;
+        background-color: #3f3e8c;
+        color: white;
+        padding: 45px 28px;
+        font-size: 24px;
+        cursor: pointer;
+        text-align: center;
+      }
+
+      .block:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      .block1 {
+        background-color: #3f3e8c;
+        border-radius: 12px;
+      }
+
+      .block2 {
+        background-color: #6b46a0;
+        border-radius: 12px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-sm-offset-1">
+          <h1>Redhat customer value classification</h1>
+          <br><br><p></p>
+        </div>
+        <form method="GET" action="/v1/predict/customer_value">
+          <div>
+            <button type="submit" class="block block1">Enter a single record of data</button>
+          </div>
+          <br><br><p></p>
+        </form>
+        <form method="GET" action="/v1/predict/upload">
+          <div>
+            <button type="submit" class="block block2">Upload test data</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <br><br>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

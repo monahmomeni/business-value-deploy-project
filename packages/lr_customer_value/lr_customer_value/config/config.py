@@ -12,6 +12,7 @@ DATASET_DIR = PACKAGE_ROOT / 'datasets'
 TRAINING_DATA_FILES = [DATASET_DIR / 'act_train.csv', DATASET_DIR / 'people.csv']
 TESTING_DATA_FILES = [DATASET_DIR / 'act_test.csv', DATASET_DIR / 'people.csv']
 
+
 PIPELINE_NAME = 'logistic_reg_redhat'
 PIPELINE_SAVE_FILE = 'lr_customer_value'
 

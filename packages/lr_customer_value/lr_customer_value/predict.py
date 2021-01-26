@@ -18,7 +18,8 @@ def make_prediction(*, input_data) -> dict:
 
     _data = pd.DataFrame(input_data)
     validated_data = validate_inputs(input_data=_data)
-    prediction = _redhat_pipe.predict(validated_data[config.FEATURES])
+    validated_data = validated_data[config.FEATURES]
+    prediction = _redhat_pipe.predict(validated_data)
     results = {"prediction": prediction, "version": _version}
 
     _logger.info(
@@ -28,3 +29,25 @@ def make_prediction(*, input_data) -> dict:
     )
 
     return results
+
+def make_batch_prediction(*, input_data) -> dict:
+    """Makes a prediction on whole uploaded file
+       using saved model pipeline.
+    """
+    _data = pd.DataFrame(input_data)
+    # Step 1: validation at regression level
+    validated_data = validate_inputs(input_data=_data)
+    validated_data = validated_data[config.FEATURES]
+    # Step 2: prediction
+    prediction = _redhat_pipe.predict(validated_data)
+    results = {"prediction": prediction, "version": _version}
+
+    _logger.info(
+        f"Prediction in process using model version: {_version} "
+        f"Inputs (5 samples): {validated_data[0:5]} "
+        f"Predictions: {results['prediction'][0:5]}"
+    )
+    return results
+
+
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redhat classification</title>
+    <style>
+        .block {
+            display: block;
+            width: 15%;
+            border: none;
+            color: white;
+            padding: 15px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+      .block:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      .block1 {
+        background-color: #3f3e8c;
+        border-radius: 12px;
+      }
+
+      .block2 {
+        background-color: #6b46a0;
+        border-radius: 12px;
+      }
+
+      div#loading {
+        top: 200 px;
+        margin: auto;
+        position: absolute;
+        z-index: 1000;
+        width: 160px;
+        height: 80px;
+        background: url('/static/loading.gif') no-repeat;
+        cursor: wait;
+      }
+
+      div#content {
+        display: block;
+      }
+
+    </style>
+    <script type="text/javascript">// <![CDATA[
+        function preloader(){
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("content").style.display = "block";
+        }
+        window.onload = preloader;
+    // ]]></script>
+
+    <script type="text/javascript">// <![CDATA[
+        function waiting(){
+            document.getElementById("loading").style.display = "block";
+            document.getElementById("content").style.display = "none";
+        }
+    // ]]></script>
+</head>
+<body>
+    <div id="loading"></div>
+    <div id="content">
+        <strong style="color:gray"><h3>upload test data for inference here!</h3></strong>
+        <br><br>
+        <form method="post" name="file_upload" enctype=multipart/form-data>
+            <div class="row">
+                <div class="form-group">
+                    <input type="file" id="test_file" name="test_file" accept=".csv,.txt">
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <input type="submit" id="btn_upload" value="Predict!" class="block block1" onclick="waiting();">
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/static/js/app.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>
